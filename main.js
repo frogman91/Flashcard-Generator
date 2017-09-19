@@ -165,13 +165,14 @@ var numArray = [
     127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150
 ];
 
+//Initialize the player score and question count
 var count = 0;
 var score = 0;
 
 shuffle(numArray); // Randomize order of the pokemon
 var questArray = []; // Array to hold the questions after they are created
 
-
+//Shuffles the array do then display in random order.
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
   
@@ -205,18 +206,18 @@ function askQuest() {
             name: "answer"
         }
     ]).then(function(resp) {
-        // The answer was correct
+        // Correct answer
         if (resp.answer.toLowerCase() === questArray[count].cloze.toLowerCase()) {
             console.log("Correct, SUGOI!!");
             score++; // Increase score
         }
-        // The answer was incorrect
+        // Incorrect answer
         else {
             console.log("Incorrect, DAME!");
             console.log("The correct answer was " + questArray[count].cloze)
         }
         count++;
-        // If there are more presidents left, ask another question
+        // If there are more pokemon left, ask another question
         if (count < 10) {
             askQuest();
         }
@@ -226,7 +227,7 @@ function askQuest() {
         }
     })
 }
-
+//Adds a suffix to the end of the number for clarification
 function ordinal_suffix_of(i) {
     var j = i % 10,
         k = i % 100;
